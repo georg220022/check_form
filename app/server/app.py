@@ -14,14 +14,14 @@ async def add_test_data(request: Request) -> dict[str, str]:
     return {"error": "Данные уже есть, 2-й раз загружать не нужно."}
 
 
-async def search_form(request: Request) -> dict | HTTPException:
+async def search_form(request: Request) -> dict[str, str] | HTTPException:
     mongo_client: AsyncIOMotorClient = request.app.state.mongo_client["forms_json_db"]
     main_data: dict | HTTPException = await json_validator(
         request
     )  # Получаем данные из тела запроса
     if not main_data:  # Если тела нет, пытаемся получить из query_params
         main_data = dict(request.query_params)
-    valid_data: dict | HTTPException = parse_and_validate_fields(main_data)
+    valid_data: dict[str, str] | HTTPException = parse_and_validate_fields(main_data)
     filter_data = valid_data.copy()
     filter_data.update(dict(length_form=len(valid_data)))
     result = await mongo_client.json_forms.find_one(

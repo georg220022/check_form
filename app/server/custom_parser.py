@@ -2,7 +2,7 @@ from fastapi import HTTPException
 from .validators import date_validator, phone_validator, email_validator
 
 
-def parse_and_validate_fields(data: dict) -> dict[str, list[str]] | HTTPException:
+def parse_and_validate_fields(data: dict) -> dict[str, str] | HTTPException:
     """Проверка полей на валидность их названий,
     с одновременной валидацией значений, на случай если не
     найдется форма в mongo, добавляется тип поля к значению, что
