@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  mongodb:
+    image : mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=gera
+      - MONGO_INITDB_ROOT_PASSWORD=gera
+    volumes:
+      - /home/mongodb/database:/data/db
+    ports:
+      - 27017
+    restart:
+      unless-stopped
+
+  web:
+    container_name: web
+    build:
+      context: app/.
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - 8000:8000
