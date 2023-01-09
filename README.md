@@ -17,7 +17,7 @@
 #### Запуск:  
 1) Клонировать репозиторий  
 2) docker-compose up  
-3) Для заполнения Mongo данными, вставить в строку браузера(GET запрос): http://0.0.0.0:8000/add_test_data  
+3) Для заполнения Mongo данными, вставить в строку браузера(GET запрос): http://localhost:8000/add_test_data  
 #### Запустить тестовые запросы:  
 4.1) Выполнить docker container ls, копировать CONTAINER_ID контейнера web  
 4.2) Выполнить docker exec -it 'сюда вставить CONTAINER_ID' bash  
